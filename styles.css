@@ -171,3 +171,197 @@ body.rtl .evidence-table td {
     break-inside: avoid;
   }
 }
+
+
+/* SENTINEL public brand polish: visual-only, no runtime behavior. */
+:root {
+  --sentinel-brand-ink: #0b1220;
+  --sentinel-brand-navy: #121f38;
+  --sentinel-brand-cyan: #16c8f5;
+  --sentinel-brand-cyan-soft: #e8f8ff;
+  --sentinel-brand-line: rgba(22, 200, 245, .32);
+  --sentinel-surface: #ffffff;
+  --sentinel-surface-soft: #f8fafc;
+
+  --sentinel-state-verified: #166534;
+  --sentinel-state-verified-bg: #dcfce7;
+  --sentinel-state-disabled: #334155;
+  --sentinel-state-disabled-bg: #e2e8f0;
+  --sentinel-state-none: #1e3a8a;
+  --sentinel-state-none-bg: #dbeafe;
+  --sentinel-state-refused: #991b1b;
+  --sentinel-state-refused-bg: #fee2e2;
+  --sentinel-state-accepted: #166534;
+  --sentinel-state-accepted-bg: #dcfce7;
+}
+
+.sentinel-brand-lockup {
+  max-width: 1120px;
+  margin: 1.25rem auto 1rem;
+  padding: 1.15rem 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border: 1px solid var(--sentinel-brand-line);
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at top left, rgba(22, 200, 245, .16), transparent 34%),
+    linear-gradient(135deg, var(--sentinel-brand-navy), #0b1220);
+  color: #fff;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, .16);
+}
+
+.sentinel-logo-mark {
+  width: 88px;
+  min-width: 88px;
+  height: 88px;
+  display: grid;
+  place-items: center;
+}
+
+.sentinel-logo-mark svg {
+  width: 88px;
+  height: 88px;
+  overflow: visible;
+}
+
+.sentinel-mark-hex {
+  fill: rgba(255, 255, 255, .04);
+  stroke: var(--sentinel-brand-cyan);
+  stroke-width: 5;
+  stroke-linejoin: round;
+}
+
+.sentinel-mark-circuit {
+  fill: none;
+  stroke: rgba(255, 255, 255, .35);
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+
+.sentinel-mark-s {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.sentinel-mark-node {
+  fill: var(--sentinel-brand-cyan);
+}
+
+.sentinel-wordmark {
+  display: grid;
+  gap: .22rem;
+}
+
+.sentinel-wordmark strong {
+  font-size: clamp(2rem, 5vw, 3.65rem);
+  letter-spacing: .18em;
+  line-height: .92;
+}
+
+.sentinel-wordmark span {
+  color: var(--sentinel-brand-cyan);
+  font-weight: 700;
+  letter-spacing: .05em;
+}
+
+.sentinel-wordmark em {
+  color: rgba(255, 255, 255, .84);
+  font-style: normal;
+}
+
+.boundary-name {
+  display: block;
+  font-weight: 800;
+  color: var(--sentinel-brand-navy);
+}
+
+.technical-ref {
+  display: block;
+  margin-top: .18rem;
+  font-size: .74rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: #64748b;
+}
+
+.examiner-boundary-note {
+  margin: -.35rem 0 .85rem;
+  color: #475569;
+  font-size: .9rem;
+}
+
+.visual-chain li strong {
+  color: var(--sentinel-state-verified);
+  background: var(--sentinel-state-verified-bg);
+}
+
+.decision.refused .result {
+  background: var(--sentinel-state-refused-bg);
+  color: var(--sentinel-state-refused);
+}
+
+.decision.accepted .result {
+  background: var(--sentinel-state-accepted-bg);
+  color: var(--sentinel-state-accepted);
+}
+
+.public-release-envelope {
+  border-color: var(--sentinel-brand-line);
+}
+
+a,
+nav a {
+  color: var(--sentinel-brand-navy);
+}
+
+@media (max-width: 680px) {
+  .sentinel-brand-lockup {
+    align-items: flex-start;
+  }
+
+  .sentinel-logo-mark {
+    width: 72px;
+    min-width: 72px;
+    height: 72px;
+  }
+
+  .sentinel-logo-mark svg {
+    width: 72px;
+    height: 72px;
+  }
+
+  .sentinel-wordmark strong {
+    letter-spacing: .12em;
+  }
+}
+
+@media print {
+  .sentinel-brand-lockup {
+    box-shadow: none;
+    background: #fff;
+    color: #000;
+    border: 1px solid #000;
+    break-inside: avoid;
+  }
+
+  .sentinel-mark-hex,
+  .sentinel-mark-circuit,
+  .sentinel-mark-s {
+    stroke: #000;
+  }
+
+  .sentinel-mark-node {
+    fill: #000;
+  }
+
+  .sentinel-wordmark span,
+  .sentinel-wordmark em,
+  .boundary-name,
+  .technical-ref {
+    color: #000;
+  }
+}

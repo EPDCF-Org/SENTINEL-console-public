@@ -13,6 +13,26 @@
   </header>
 <main class="shell" data-runtime="static-read-only">
 
+<section class="sentinel-brand-lockup" data-public-brand-polish="sentinel-logo-v1" aria-label="SENTINEL brand identity">
+  <div class="sentinel-logo-mark" aria-hidden="true">
+    <svg viewBox="0 0 120 120" role="img" aria-label="SENTINEL public mark">
+      <path class="sentinel-mark-hex" d="M60 6 105 32v56L60 114 15 88V32L60 6Z"></path>
+      <path class="sentinel-mark-circuit" d="M31 35h18m22 0h18M31 85h18m22 0h18M60 18v18m0 48v18"></path>
+      <path class="sentinel-mark-s" d="M78 36H50c-11 0-18 6-18 15s7 15 18 15h20c9 0 15 5 15 13s-7 14-18 14H39"></path>
+      <circle class="sentinel-mark-node" cx="31" cy="35" r="3"></circle>
+      <circle class="sentinel-mark-node" cx="89" cy="35" r="3"></circle>
+      <circle class="sentinel-mark-node" cx="31" cy="85" r="3"></circle>
+      <circle class="sentinel-mark-node" cx="89" cy="85" r="3"></circle>
+    </svg>
+  </div>
+  <div class="sentinel-wordmark">
+    <strong>SENTINEL</strong>
+    <span>Trust &amp; Verification Layer</span>
+    <em>Evidence Before Authority.</em>
+  </div>
+</section>
+
+
 
 
 <section class="public-release-strip public-release-envelope" data-public-release="t1755" aria-label="Public release status">
@@ -103,8 +123,8 @@
         <p><strong>Source commit:</strong> ba562d4</p>
         <p><strong>Recommended next step:</strong> Joint technical workshop followed by a bank-controlled isolated synthetic-data PoC in observation-only mode.</p>
         <h3>Verified boundaries</h3>
-        <table><thead><tr><th>Boundary</th><th>Tests</th><th>Evidence role</th></tr></thead><tbody><tr><td>T1751</td><td>6/6 passed</td><td>canonical controls and certificate binding</td></tr><tr><td>T1752</td><td>6/6 passed</td><td>bank PoC claims boundary</td></tr><tr><td>T1753</td><td>6/6 passed</td><td>read-only evidence snapshot</td></tr><tr><td>T1754</td><td>6/6 passed</td><td>static frontend skeleton</td></tr>
-<tr><td>T1755</td><td>6/6 passed</td><td>deterministic snapshot, source binding, and print integrity</td></tr></tbody></table>
+        <table><thead><tr><th>Boundary name</th><th>Validation</th><th>Evidence role</th></tr></thead><tbody><tr><td><span class="boundary-name">Authority-Language Certificate Boundary</span><small class="technical-ref">T1751</small></td><td>6/6 passed</td><td>canonical controls and certificate binding</td></tr><tr><td><span class="boundary-name">Bank PoC Claims Boundary</span><small class="technical-ref">T1752</small></td><td>6/6 passed</td><td>bank PoC claims boundary</td></tr><tr><td><span class="boundary-name">Read-Only Evidence Snapshot Boundary</span><small class="technical-ref">T1753</small></td><td>6/6 passed</td><td>read-only evidence snapshot</td></tr><tr><td><span class="boundary-name">Static Frontend Skeleton Boundary</span><small class="technical-ref">T1754</small></td><td>6/6 passed</td><td>static frontend skeleton</td></tr>
+<tr><td><span class="boundary-name">Snapshot Source Binding &amp; Print Integrity Boundary</span><small class="technical-ref">T1755</small></td><td>6/6 passed</td><td>deterministic snapshot, source binding, and print integrity</td></tr></tbody></table>
         <h3>Open risks</h3><ul><li>Performance validation</li><li>HSM or KMS integration validation</li><li>Independent security assessment</li><li>High availability validation</li></ul>
       </div>
       <button type="button" id="print-summary" data-action="print-short-evidence-summary">Generate PoC Evidence Summary</button>
@@ -113,8 +133,9 @@
     <section class="page panel examiner" id="examiner_view" aria-label="Examiner View">
       <div class="print-banner">OBSERVATION-ONLY | READ-ONLY | NO EXTERNAL EFFECT</div>
       <h2>Examiner View</h2>
-      <table><tbody><tr><td>T1751</td><td>6/6 passed</td><td>canonical controls and certificate binding</td></tr><tr><td>T1752</td><td>6/6 passed</td><td>bank PoC claims boundary</td></tr><tr><td>T1753</td><td>6/6 passed</td><td>read-only evidence snapshot</td></tr><tr><td>T1754</td><td>6/6 passed</td><td>static frontend skeleton</td></tr>
-<tr><td>T1755</td><td>6/6 passed</td><td>deterministic snapshot, source binding, and print integrity</td></tr></tbody></table>
+      <p class="examiner-boundary-note">Boundary names are shown first; technical task references remain as secondary identifiers.</p>
+      <table><tbody><tr><td><span class="boundary-name">Authority-Language Certificate Boundary</span><small class="technical-ref">T1751</small></td><td>6/6 passed</td><td>canonical controls and certificate binding</td></tr><tr><td><span class="boundary-name">Bank PoC Claims Boundary</span><small class="technical-ref">T1752</small></td><td>6/6 passed</td><td>bank PoC claims boundary</td></tr><tr><td><span class="boundary-name">Read-Only Evidence Snapshot Boundary</span><small class="technical-ref">T1753</small></td><td>6/6 passed</td><td>read-only evidence snapshot</td></tr><tr><td><span class="boundary-name">Static Frontend Skeleton Boundary</span><small class="technical-ref">T1754</small></td><td>6/6 passed</td><td>static frontend skeleton</td></tr>
+<tr><td><span class="boundary-name">Snapshot Source Binding &amp; Print Integrity Boundary</span><small class="technical-ref">T1755</small></td><td>6/6 passed</td><td>deterministic snapshot, source binding, and print integrity</td></tr></tbody></table>
       <dl class="facts">
         <div><dt>Latest merge commit</dt><dd>b8c0f8c</dd></div>
         <div><dt>Snapshot digest</dt><dd>8707096a6a33e2cf</dd></div>
