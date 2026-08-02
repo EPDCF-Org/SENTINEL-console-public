@@ -108,3 +108,34 @@ body.rtl .evidence-table td {
     margin: 0;
   }
 }
+
+
+.public-release-strip {
+  margin: 1rem auto;
+  max-width: 1120px;
+  padding: .85rem 1rem;
+  border: 1px solid rgba(18, 31, 56, .18);
+  border-radius: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .65rem 1rem;
+  align-items: center;
+  background: rgba(255, 255, 255, .88);
+  color: #111827;
+  font-size: .9rem;
+}
+
+.public-release-strip strong {
+  color: #121f38;
+}
+
+.public-release-strip span {
+  white-space: nowrap;
+}
+
+@media print {
+  .public-release-strip {
+    break-inside: avoid;
+    background: #fff;
+  }
+}

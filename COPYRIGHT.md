@@ -1,15 +1,7 @@
-# Copyright Notice
+Copyright © 2026 SENTINEL Project. All rights reserved.
 
-Copyright © 2026 SENTINEL rights holder. All rights reserved.
+Trademark and ownership notices are pending formal registration.
 
-No license is granted to reproduce, modify, distribute, commercialize,
-sublicense, or represent this software, brand, evidence, documentation, or
-design material as an independent product.
+SENTINEL is provided in this public repository only as an approved public evaluation shell.
 
-This repository or release, if public, is provided only as an approved public
-evaluation shell. It does not grant rights to SENTINEL Core, evidence engines,
-verifier logic, policy engines, private architecture, signing keys, trademarks,
-or confidential materials.
-
-This text is an operational placeholder and must be reviewed by qualified legal
-counsel before commercial use.
+This repository does not include SENTINEL Core, private policy engines, confidential verification logic, signing keys, customer data, banking integrations, production infrastructure, or external system connectivity.

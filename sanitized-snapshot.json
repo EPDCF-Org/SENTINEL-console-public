@@ -100,6 +100,18 @@
   "production_authority": "Disabled",
   "public_export": true,
   "public_export_mode": "sanitized_static_shell_only",
+  "public_release": {
+    "display_name": "Evidence Snapshot & Report Integrity",
+    "evidence_package": "T1755",
+    "merge_commit": "b8c0f8c",
+    "network_dependencies": "None",
+    "ownership_notice": "Copyright \u00a9 2026 SENTINEL Project. All rights reserved. Trademark and ownership notices are pending formal registration.",
+    "snapshot_source_baseline": "T1754",
+    "snapshot_source_commit": "ba562d4",
+    "source_commit": "3623c45",
+    "status": "merged_and_verified",
+    "validation": "6/6 passed"
+  },
   "real_demo_values": false,
   "recommended_next_step": "Joint technical workshop followed by a bank-controlled isolated synthetic-data PoC in observation-only mode.",
   "repository_state": "Merged to main",
