@@ -365,3 +365,84 @@ nav a {
     color: #000;
   }
 }
+
+
+/* SENTINEL wordmark-only repair: removes experimental oversized SVG mark. */
+.sentinel-brand-lockup[data-public-brand-polish="sentinel-wordmark-only-v2"] {
+  margin: .8rem auto .75rem;
+  padding: .85rem 1rem;
+  min-height: 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: .75rem;
+  border-radius: 16px;
+}
+
+.sentinel-brand-lockup[data-public-brand-polish="sentinel-wordmark-only-v2"] .sentinel-logo-mark {
+  display: none !important;
+}
+
+.sentinel-brand-lockup[data-public-brand-polish="sentinel-wordmark-only-v2"] .sentinel-wordmark {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: .35rem .65rem;
+}
+
+.sentinel-brand-lockup[data-public-brand-polish="sentinel-wordmark-only-v2"] .sentinel-wordmark strong {
+  font-size: clamp(1.45rem, 3vw, 2.15rem);
+  letter-spacing: .13em;
+  line-height: 1;
+}
+
+.sentinel-brand-lockup[data-public-brand-polish="sentinel-wordmark-only-v2"] .sentinel-wordmark span {
+  font-size: .98rem;
+}
+
+.sentinel-brand-lockup[data-public-brand-polish="sentinel-wordmark-only-v2"] .sentinel-wordmark em {
+  font-size: .98rem;
+}
+
+.sentinel-brand-lockup[data-public-brand-polish="sentinel-wordmark-only-v2"] + .public-release-strip {
+  margin-top: .75rem;
+}
+
+.boundary-name {
+  line-height: 1.2;
+}
+
+.technical-ref {
+  display: none !important;
+}
+
+.examiner-boundary-note {
+  max-width: 720px;
+}
+
+@media print {
+  .sentinel-brand-lockup[data-public-brand-polish="sentinel-wordmark-only-v2"] {
+    margin: 0 auto .3rem;
+    padding: .25rem 0 .35rem;
+    border: 0;
+    border-radius: 0;
+    background: #fff;
+    color: #000;
+    box-shadow: none;
+    break-inside: avoid;
+  }
+
+  .sentinel-brand-lockup[data-public-brand-polish="sentinel-wordmark-only-v2"] .sentinel-wordmark {
+    gap: .2rem .4rem;
+  }
+
+  .sentinel-brand-lockup[data-public-brand-polish="sentinel-wordmark-only-v2"] .sentinel-wordmark strong {
+    font-size: 13pt;
+    letter-spacing: .08em;
+  }
+
+  .sentinel-brand-lockup[data-public-brand-polish="sentinel-wordmark-only-v2"] .sentinel-wordmark span,
+  .sentinel-brand-lockup[data-public-brand-polish="sentinel-wordmark-only-v2"] .sentinel-wordmark em {
+    font-size: 8.5pt;
+  }
+}
