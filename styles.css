@@ -139,3 +139,35 @@ body.rtl .evidence-table td {
     background: #fff;
   }
 }
+
+
+.public-release-envelope {
+  justify-content: space-between;
+}
+
+.public-release-envelope .release-block {
+  display: grid;
+  gap: .2rem;
+  min-width: 220px;
+}
+
+.public-release-envelope .release-block strong {
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  font-size: .72rem;
+}
+
+.public-release-envelope .release-block span {
+  font-weight: 700;
+}
+
+.public-release-envelope .release-block small {
+  opacity: .78;
+  line-height: 1.35;
+}
+
+@media print {
+  .public-release-envelope .release-block {
+    break-inside: avoid;
+  }
+}
