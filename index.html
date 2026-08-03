@@ -153,5 +153,186 @@
 }
 </script>
   <script src="./i18n.js"></script>
+<script id="sentinel-language-layout-controller">
+(() => {
+  const LANGS = new Set(["EN", "AR", "TR", "FR", "ES", "DE"]);
+  const RTL = new Set(["AR"]);
+  const STORE_KEYS = [
+    "sentinel_console_language",
+    "sentinel_public_language",
+    "sentinel_public_site_language",
+    "sentinel_language",
+    "sentinel_lang"
+  ];
+  let applyingSavedLanguage = false;
+  let scheduled = false;
+
+  const norm = (value) => String(value || "").trim().toUpperCase();
+
+  function langForButton(el) {
+    const explicit = norm(el.getAttribute("data-lang") || el.getAttribute("lang") || el.getAttribute("aria-label"));
+    if (LANGS.has(explicit)) return explicit;
+    const text = norm(el.textContent);
+    return LANGS.has(text) ? text : "";
+  }
+
+  function isLangButton(el) {
+    if (!el || el.id === "sentinel-language-dock") return false;
+    if (!(el.matches("button, a, [role='button'], .lang, .language, .language-option"))) return false;
+    return Boolean(langForButton(el));
+  }
+
+  function allLangButtons(root = document) {
+    return Array.from(root.querySelectorAll("button, a, [role='button'], .lang, .language, .language-option"))
+      .filter(isLangButton);
+  }
+
+  function closestLanguageContainer(buttons) {
+    const candidates = new Map();
+    buttons.forEach((button) => {
+      let node = button.parentElement;
+      let depth = 0;
+      while (node && node !== document.body && depth < 6) {
+        candidates.set(node, (candidates.get(node) || 0) + 1);
+        node = node.parentElement;
+        depth += 1;
+      }
+    });
+    let best = null;
+    for (const [node, count] of candidates) {
+      if (count >= Math.min(3, buttons.length)) {
+        if (!best || node.querySelectorAll("*").length < best.querySelectorAll("*").length) best = node;
+      }
+    }
+    return best;
+  }
+
+  function readSavedLanguage() {
+    for (const key of STORE_KEYS) {
+      const value = norm(localStorage.getItem(key));
+      if (LANGS.has(value)) return value;
+    }
+    return "";
+  }
+
+  function writeSavedLanguage(lang) {
+    if (!LANGS.has(lang)) return;
+    for (const key of STORE_KEYS) {
+      try { localStorage.setItem(key, lang); } catch (_) {}
+    }
+  }
+
+  function applyDocumentDirection(lang) {
+    if (!LANGS.has(lang)) return;
+    document.documentElement.lang = lang.toLowerCase();
+    document.documentElement.dir = RTL.has(lang) ? "rtl" : "ltr";
+  }
+
+  function ensureDock() {
+    const buttons = allLangButtons();
+    if (!buttons.length) return null;
+
+    let dock = document.getElementById("sentinel-language-dock");
+    if (!dock) {
+      dock = document.createElement("nav");
+      dock.id = "sentinel-language-dock";
+      dock.className = "sentinel-language-dock";
+      dock.setAttribute("aria-label", "Language selection");
+      dock.setAttribute("data-language-layout", "docked-persistent-v1");
+
+      const header =
+        document.querySelector(".sentinel-brand-lockup") ||
+        document.querySelector(".integrated-executive-header") ||
+        document.querySelector("header") ||
+        document.querySelector("main");
+
+      if (!header) return null;
+      const wordmark = header.querySelector(".sentinel-wordmark");
+      if (wordmark && wordmark.parentElement === header) wordmark.insertAdjacentElement("afterend", dock);
+      else header.appendChild(dock);
+    }
+
+    const sourceButtons = buttons.filter((button) => !dock.contains(button));
+    const sourceContainer = closestLanguageContainer(sourceButtons);
+    sourceButtons.forEach((button) => {
+      const lang = langForButton(button);
+      if (!lang) return;
+      button.classList.add("sentinel-lang-button");
+      button.setAttribute("data-lang", lang);
+      if (button.tagName.toLowerCase() === "button" && !button.getAttribute("type")) button.setAttribute("type", "button");
+      dock.appendChild(button);
+    });
+
+    if (sourceContainer && sourceContainer !== dock && !dock.contains(sourceContainer)) {
+      const remaining = allLangButtons(sourceContainer);
+      if (!remaining.length) {
+        sourceContainer.classList.add("sentinel-language-source-hidden");
+        sourceContainer.setAttribute("aria-hidden", "true");
+      }
+    }
+
+    allLangButtons(dock).forEach((button) => {
+      const lang = langForButton(button);
+      button.classList.add("sentinel-lang-button");
+      button.setAttribute("data-lang", lang);
+      button.setAttribute("aria-label", `Switch language to ${lang}`);
+    });
+
+    const saved = readSavedLanguage();
+    if (saved) {
+      applyDocumentDirection(saved);
+      const current = dock.querySelector("[aria-pressed='true']") || dock.querySelector(".active") || dock.querySelector("[data-active='true']");
+      const currentLang = current ? langForButton(current) : "";
+      if (currentLang !== saved && !applyingSavedLanguage) {
+        const target = Array.from(dock.querySelectorAll(".sentinel-lang-button")).find((button) => langForButton(button) === saved);
+        if (target) {
+          applyingSavedLanguage = true;
+          setTimeout(() => {
+            target.click();
+            applyDocumentDirection(saved);
+            applyingSavedLanguage = false;
+          }, 30);
+        }
+      }
+    }
+
+    return dock;
+  }
+
+  document.addEventListener("click", (event) => {
+    const button = event.target.closest("#sentinel-language-dock .sentinel-lang-button, #sentinel-language-dock button, #sentinel-language-dock a, #sentinel-language-dock [role='button']");
+    if (!button) return;
+    const lang = langForButton(button);
+    if (!lang) return;
+    writeSavedLanguage(lang);
+    applyDocumentDirection(lang);
+  }, true);
+
+  function scheduleEnsureDock() {
+    if (scheduled) return;
+    scheduled = true;
+    requestAnimationFrame(() => {
+      scheduled = false;
+      ensureDock();
+    });
+  }
+
+  window.addEventListener("hashchange", () => {
+    document.documentElement.classList.add("sentinel-anchor-navigation");
+    setTimeout(() => document.documentElement.classList.remove("sentinel-anchor-navigation"), 500);
+    scheduleEnsureDock();
+  });
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const saved = readSavedLanguage();
+    if (saved) applyDocumentDirection(saved);
+    scheduleEnsureDock();
+    setTimeout(scheduleEnsureDock, 120);
+    setTimeout(scheduleEnsureDock, 500);
+  });
+
+  new MutationObserver(scheduleEnsureDock).observe(document.documentElement, { childList: true, subtree: true });
+})();
+</script>
 </body>
 </html>

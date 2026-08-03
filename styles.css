@@ -446,3 +446,133 @@ nav a {
     font-size: 8.5pt;
   }
 }
+
+
+/* SENTINEL i18n dock repair: persistent language control without content overlap. */
+html {
+  scroll-padding-top: 112px;
+}
+
+section[id],
+.page[id],
+.panel[id],
+[id^="synthetic"],
+[id^="fail"],
+[id^="claims"],
+[id^="examiner"] {
+  scroll-margin-top: 112px;
+}
+
+.sentinel-brand-lockup {
+  position: relative;
+}
+
+.sentinel-language-dock,
+#sentinel-language-dock {
+  position: static !important;
+  inset: auto !important;
+  transform: none !important;
+  z-index: auto !important;
+  margin-inline-start: auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: .35rem;
+  padding: .25rem;
+  border: 1px solid rgba(22, 200, 245, .24);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .10);
+  box-shadow: none;
+}
+
+#sentinel-language-dock .sentinel-lang-button,
+#sentinel-language-dock button,
+#sentinel-language-dock a,
+#sentinel-language-dock [role="button"] {
+  position: static !important;
+  min-width: 2.1rem;
+  min-height: 1.9rem;
+  padding: .28rem .55rem;
+  border: 1px solid rgba(255, 255, 255, .26);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .10);
+  color: inherit;
+  font-size: .76rem;
+  font-weight: 800;
+  line-height: 1;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#sentinel-language-dock .sentinel-lang-button.active,
+#sentinel-language-dock .sentinel-lang-button[aria-pressed="true"],
+#sentinel-language-dock button.active,
+#sentinel-language-dock button[aria-pressed="true"],
+#sentinel-language-dock [data-active="true"] {
+  background: var(--sentinel-brand-cyan, #16c8f5);
+  border-color: var(--sentinel-brand-cyan, #16c8f5);
+  color: #07111f;
+}
+
+.sentinel-language-source-hidden {
+  display: none !important;
+}
+
+.language-bar:not(#sentinel-language-dock),
+.language-switcher:not(#sentinel-language-dock),
+.i18n-language-bar:not(#sentinel-language-dock),
+.lang-switcher:not(#sentinel-language-dock),
+.sentinel-language-bar:not(#sentinel-language-dock) {
+  position: static !important;
+  inset: auto !important;
+  transform: none !important;
+}
+
+[dir="rtl"] .sentinel-language-dock,
+[dir="rtl"] #sentinel-language-dock {
+  margin-inline-start: 0;
+  margin-inline-end: auto;
+}
+
+[dir="rtl"] .commit-hash,
+[dir="rtl"] .digest-value,
+[dir="rtl"] code,
+[dir="rtl"] .technical-ref,
+[dir="rtl"] #sentinel-public-release-data,
+[dir="rtl"] #sentinel-snapshot-data {
+  direction: ltr;
+  unicode-bidi: embed;
+}
+
+@media (max-width: 760px) {
+  #sentinel-language-dock {
+    width: 100%;
+    justify-content: flex-start;
+    margin-inline-start: 0;
+  }
+
+  html {
+    scroll-padding-top: 132px;
+  }
+
+  section[id],
+  .page[id],
+  .panel[id] {
+    scroll-margin-top: 132px;
+  }
+}
+
+@media print {
+  #sentinel-language-dock {
+    display: none !important;
+  }
+
+  html,
+  section[id],
+  .page[id],
+  .panel[id] {
+    scroll-padding-top: 0;
+    scroll-margin-top: 0;
+  }
+}
